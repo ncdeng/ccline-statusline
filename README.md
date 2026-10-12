@@ -1,6 +1,6 @@
 # ccline-statusline
 
-Claude Code 的状态栏程序，用 Rust 写成，一个可执行文件就能用。基于 [Haleclipse](https://github.com/Haleclipse)（哈雷）的 [CCometixLine](https://github.com/Haleclipse/CCometixLine)（MIT）改写，并加了几项功能（见[致敬哈雷](#致敬哈雷)）。
+Claude Code 的状态栏程序，用 Rust 写成，一个可执行文件就能用。基于 [Haleclipse](https://github.com/Haleclipse)（哈雷）的 [CCometixLine](https://github.com/Haleclipse/CCometixLine)（MIT）改写，并加了几项功能。
 
 ```
 󰓒 Opus 5.5 xhigh | 󰉋 my-project | 󰊢 main ✓ | $12.34 | 󰆼 46.7% · 466.6k/1M | ⚡ 39m59s | 106 tok/s · ttft 3.7s | 5h 27%→3h29m | 7d 51%→1d20h · Wed 10:00 · $651 2.3B tok/~$1.3k 4.51B tok
@@ -131,17 +131,9 @@ cargo build --release   # 程序在 target/release/
 cargo test
 ```
 
-## 致敬哈雷
+## 致谢
 
-这个项目站在 [Haleclipse](https://github.com/Haleclipse)（哈雷）的 [CCometixLine](https://github.com/Haleclipse/CCometixLine) 的肩膀上。
-
-我们最早用的就是 CCometixLine。状态栏前面那几段的样子，都是哈雷设计的：模型、目录、git、费用的 Nerd Font 图标和配色，`config.toml` / `models.toml` 的配置格式，还有默认主题的名字 `cometix`。这个项目全部原样保留，读的也是同一份配置文件，改写时让这 4 段和 ccline 1.1.2 逐字节相同。
-
-我们后来加的功能越来越多，结构和原项目差别也越来越大，所以另开了一个仓库，没有 fork。但没有 CCometixLine，就不会有这个项目。谢谢哈雷。
-
-CCometixLine 有很多这里没有的东西：可视化的 TUI 配置界面、多套主题、用 npm 一条命令安装（`npm install -g @cometix/ccline`）。如果你只需要这些，直接用 CCometixLine 就好，也欢迎去给它点个 ⭐。
-
-CCometixLine 采用 MIT License，本项目的 [LICENSE](LICENSE) 里保留了它的版权声明。
+模型、目录、git、费用这 4 段的图标、配色和配置格式参考了 [Haleclipse](https://github.com/Haleclipse)（哈雷）的 [CCometixLine](https://github.com/Haleclipse/CCometixLine)（MIT），读的也是同一份 `config.toml`。想要 TUI 配置界面和多套主题，可以直接用 CCometixLine。
 
 ## License
 
