@@ -1,0 +1,11 @@
+# Runtime state the script writes under ~/.claude/ccline/, in case it is copied here
+session-cost/
+git-cache/
+week-spend.json
+rate-limits-cache.json
+.api_usage_cache.json
+*.bak*
+node_modules/
+.DS_Store
+Thumbs.db
+/target
