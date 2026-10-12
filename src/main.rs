@@ -153,7 +153,8 @@ fn main() {
         let rl = guard(|| quota::resolve_rate_limits(data.get("rate_limits"))).flatten();
         let week = guard(|| quota::week_spend(js::get(rl.as_ref(), &["seven_day"]))).flatten();
         let quota = guard(|| quota::fmt_quota(rl.as_ref(), week.as_ref())).unwrap_or_default();
-        let ctx = guard(|| fmt::fmt_context(data.get("context_window"))).unwrap_or_default();
+        let plain = guard(ccline::plain_icons).unwrap_or(false);
+        let ctx = guard(|| fmt::fmt_context(data.get("context_window"), plain)).unwrap_or_default();
         let pc = data.get("prompt_cache");
         let cache_ttl = guard(|| transcript::fmt_cache_ttl(scan.as_ref(), pc)).unwrap_or_default();
         let tps = guard(|| transcript::fmt_tps(tp, tail.as_ref(), scan.as_ref())).unwrap_or_default();

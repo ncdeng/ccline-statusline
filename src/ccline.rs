@@ -194,6 +194,12 @@ fn read_toml(file: &Path, default: &str) -> Option<Value> {
     }
 }
 
+/// Whether config.toml asks for plain icons (emoji) instead of Nerd Font ones.
+pub fn plain_icons() -> bool {
+    let cfg = read_toml(&paths::ccline_dir().join("config.toml"), DEFAULT_CONFIG);
+    js::get(cfg.as_ref(), &["style", "mode"]).and_then(Value::as_str) == Some("plain")
+}
+
 // ---- segments ----
 
 const NATIVE_SEGMENTS: [&str; 4] = ["model", "directory", "git", "cost"];

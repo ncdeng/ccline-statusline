@@ -1,6 +1,6 @@
 [package]
 name = "ccline-statusline"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 rust-version = "1.82"
 description = "Claude Code status line: session cost that survives restarts, prompt-cache countdown, output speed, 5h/7d quota with this week's spend"

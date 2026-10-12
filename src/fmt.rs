@@ -51,9 +51,11 @@ pub fn fmt_usd(x: f64) -> String {
 
 // Material Design range: also renders on the Mac.
 const CTX_ICON: &str = "\u{F01BC}";
+// For `mode = "plain"`, without a Nerd Font.
+const CTX_ICON_PLAIN: &str = "🧠";
 
 /// The current session's context, from Claude Code's stdin.
-pub fn fmt_context(cw: Option<&Value>) -> String {
+pub fn fmt_context(cw: Option<&Value>, plain: bool) -> String {
     let size = js::number_or0(js::get(cw, &["context_window_size"]));
     let used = js::number_or0(js::get(cw, &["total_input_tokens"]));
     let raw = js::get(cw, &["used_percentage"]);
@@ -81,7 +83,8 @@ pub fn fmt_context(cw: Option<&Value>) -> String {
     };
     let token_str =
         if size != 0.0 { format!("{}/{}", fmt_k(used), fmt_k(size)) } else { format!("{} tokens", fmt_k(used)) };
-    format!("{} {} {}", mag(CTX_ICON), by_load(js::round(pct), &pct_str), dim(&format!("· {token_str}")))
+    let icon = if plain { CTX_ICON_PLAIN } else { CTX_ICON };
+    format!("{} {} {}", mag(icon), by_load(js::round(pct), &pct_str), dim(&format!("· {token_str}")))
 }
 
 /// The effort level, shown after the model name.

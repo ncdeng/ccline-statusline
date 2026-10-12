@@ -2,9 +2,7 @@
 
 Claude Code 的状态栏程序，用 Rust 写成，一个可执行文件就能用。基于 [Haleclipse](https://github.com/Haleclipse)（哈雷）的 [CCometixLine](https://github.com/Haleclipse/CCometixLine)（MIT）改写，并加了几项功能。
 
-```
-󰓒 Opus 5.5 xhigh | 󰉋 my-project | 󰊢 main ✓ | $12.34 | 󰆼 46.7% · 466.6k/1M | ⚡ 39m59s | 106 tok/s · ttft 3.7s | 5h 27%→3h29m | 7d 51%→1d20h · Wed 10:00 · $651 2.3B tok/~$1.3k 4.51B tok
-```
+![状态栏截图：模型、目录、git、费用、上下文、缓存倒计时、速度、5h 和 7d 额度](assets/statusline.png)
 
 ## 显示的内容
 
@@ -17,11 +15,11 @@ Claude Code 的状态栏程序，用 Rust 写成，一个可执行文件就能�
 | `⚡ 39m59s` | 提示词缓存还剩多久过期。过期后下一条消息要重新写缓存，上下文大时很贵。命中率低于 95% 时会显示 `hit xx%`；缓存刚未命中的 10 分钟内会显示原因，比如 `miss: tools +466k` |
 | `106 tok/s · ttft 3.7s` | 最近 8 次回复的生成速度，以及最近一次回复的首 token 等待时间 |
 | `5h 27%→3h29m` | 5 小时额度用量和重置倒计时 |
-| `7d 51%→1d20h · Wed 10:00` | 周额度用量、重置倒计时和重置时间（本地时间） |
-| `$651 2.3B tok` | 本周期这台电脑上 Claude Code 的总用量：按 API 价格折算的美元，和总 token 数 |
-| `/~$1.3k 4.51B tok` | 按“已用 ÷ 百分比”推算的整个周额度。周额度用量低于 5% 时不显示 |
+| `7d 51%→1d19h · Wed 10:00` | 周额度用量、重置倒计时和重置时间（本地时间） |
+| `$651 2.34B tok` | 本周期这台电脑上 Claude Code 的总用量：按 API 价格折算的美元，和总 token 数 |
+| `/~$1.3k 4.58B tok` | 按“已用 ÷ 百分比”推算的整个周额度。周额度用量低于 5% 时不显示 |
 
-终端太窄时，放不下的段会整段移到下一行，不会被 Claude Code 截成“…”。
+终端太窄时，放不下的段会整段移到下一行，不会被 Claude Code 截成“…”。上面的截图就是 110 列宽的终端里换成两行的样子。
 
 ## 和 CCometixLine 的区别
 
@@ -96,7 +94,7 @@ macOS / Linux：
 
 ### 3. 字体和样式（可选）
 
-- 图标要用 [Nerd Font](https://www.nerdfonts.com/) 字体才能显示。没有的话，要改用普通 emoji：把仓库里的 `config.toml` 复制到 `~/.claude/ccline/`，再把里面的 `mode = "nerd_font"` 改成 `mode = "plain"`。
+- 图标要用 [Nerd Font](https://www.nerdfonts.com/) 字体才能显示。没有的话，要改用普通 emoji：把仓库里的 `config.toml` 复制到 `~/.claude/ccline/`，再把里面的 `mode = "nerd_font"` 改成 `mode = "plain"`，所有图标都会换成普通 emoji。
 - `~/.claude/ccline/` 里没有 `config.toml` 和 `models.toml` 时，程序用内置的默认配置，就是仓库里的这两个文件。
 - 已经在用 CCometixLine 的话，程序直接读你现有的 `config.toml`。如果其中启用了这 4 段以外的段（`context_window`、`usage`、`session`、`output_style`），或者用了背景色、Powerline 分隔符，这部分就交给 `~/.claude/ccline/ccline(.exe)` 本身去画，所以要保留 ccline。
 
